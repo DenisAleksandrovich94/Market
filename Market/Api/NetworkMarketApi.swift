@@ -1,8 +1,8 @@
 import UIKit
 
-class NetWorkApi {
+class NetworkMarketApi {
     
-    static let shared = NetWorkApi()
+    static let shared = NetworkMarketApi()
     
     private init(){}
     
@@ -10,7 +10,7 @@ class NetWorkApi {
     private let urlString = "https://dummyjson.com/carts"
     
     
-    func fetchCarts(products count: Int, completion: @escaping (Result <[MarketApi.Products], Error>) -> ()) {
+    func fetchCarts(products count: Int, completion: @escaping (Result <[ProductsApi.Products], Error>) -> ()) {
         
         guard let url = URL(string:urlString) else {
             print("Error url")
@@ -22,9 +22,9 @@ class NetWorkApi {
                 return }
             
             do{
-                let products = try JSONDecoder().decode(MarketApi.self, from: data)
+                let products = try JSONDecoder().decode(ProductsApi.self, from: data)
                 
-                var allProducts = [MarketApi.Products]()
+                var allProducts = [ProductsApi.Products]()
 
                 products.carts.forEach { cart in
                     cart.products.forEach { product in

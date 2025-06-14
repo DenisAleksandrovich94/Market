@@ -1,6 +1,6 @@
 import UIKit
 
-struct MarketApi: Codable {
+struct ProductsApi: Codable {
     
     var carts: [Carts]
     

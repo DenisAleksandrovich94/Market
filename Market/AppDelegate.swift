@@ -1,9 +1,4 @@
-//
-//  AppDelegate.swift
-//  Market
-//
-//  Created by Ivakhnenko Denis on 12.06.2025.
-//
+
 
 import UIKit
 
