@@ -12,5 +12,4 @@ class Human: Object {
     @objc dynamic var cardNumber = ""
     var cart = List<Products>()
     
-    
 }

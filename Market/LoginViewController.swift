@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
         
         AddTargetButtons()
         
-        NetworkMarketApi.shared.fetchCarts(products: 10) { result in
+        NetworkMarketApi.shared.fetchCarts(products: 1) { result in
             switch result {
             case .success (let data):
                 print(data)
