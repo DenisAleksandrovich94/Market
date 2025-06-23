@@ -289,7 +289,7 @@
             </objects>
             <point key="canvasLocation" x="107.63358778625954" y="-35.211267605633807"/>
         </scene>
-        <!--Item-->
+        <!--Profile View Controller-->
         <scene sceneID="h5t-OH-eNT">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="7J6-Ry-itV" customClass="ProfileViewController" customModule="Market" customModuleProvider="target" sceneMemberID="viewController">
@@ -392,7 +392,6 @@
                             <constraint firstItem="tVr-Sb-9Z7" firstAttribute="top" secondItem="5IC-0i-Ss5" secondAttribute="top" constant="8" id="uuh-mn-gFT"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="gWd-WM-dYd"/>
                     <connections>
                         <outlet property="cardView" destination="sd3-Yp-sm3" id="Fr6-Zh-Xji"/>
                     </connections>
@@ -404,17 +403,77 @@
         <!--All Users-->
         <scene sceneID="Gfw-QS-fnT">
             <objects>
-                <viewController storyboardIdentifier="PeopleViewController" id="EJ0-TC-S1w" customClass="PeopleViewController" customModule="Market" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EJ0-TC-S1w" customClass="AllUsersViewController" customModule="Market" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kKL-EJ-8kf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oBg-5X-f2V">
+                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllUsersTableViewCell" rowHeight="78" id="Jj4-3M-lBi" customClass="AllUsersTableViewCell" customModule="Market" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="78"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jj4-3M-lBi" id="FOK-yH-aun">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="78"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="a54-qJ-Vqd">
+                                                    <rect key="frame" x="28" y="20.666666666666664" width="40" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="RkE-uw-9RX"/>
+                                                        <constraint firstAttribute="height" constant="40" id="pJu-nf-7GN"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vasy pupuchkin fffff" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-HM-JcJ">
+                                                    <rect key="frame" x="84" y="38" width="152" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoW-Av-wTo">
+                                                    <rect key="frame" x="302.33333333333331" y="31" width="82.666666666666686" height="35"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Сhoose"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="a54-qJ-Vqd" secondAttribute="bottom" constant="8" id="BFG-AA-r1t"/>
+                                                <constraint firstAttribute="trailing" secondItem="AoW-Av-wTo" secondAttribute="trailing" constant="8" id="MQh-kV-BH3"/>
+                                                <constraint firstItem="7GV-HM-JcJ" firstAttribute="bottom" secondItem="a54-qJ-Vqd" secondAttribute="bottom" id="QWX-R5-zvX"/>
+                                                <constraint firstItem="7GV-HM-JcJ" firstAttribute="leading" secondItem="a54-qJ-Vqd" secondAttribute="trailing" constant="16" id="TWO-NN-ieB"/>
+                                                <constraint firstItem="a54-qJ-Vqd" firstAttribute="leading" secondItem="FOK-yH-aun" secondAttribute="leadingMargin" constant="8" id="jKa-F4-mQD"/>
+                                                <constraint firstItem="a54-qJ-Vqd" firstAttribute="top" secondItem="FOK-yH-aun" secondAttribute="topMargin" constant="8" id="omc-V2-PEB"/>
+                                                <constraint firstItem="AoW-Av-wTo" firstAttribute="centerY" secondItem="7GV-HM-JcJ" secondAttribute="centerY" id="x5M-NQ-Kz1"/>
+                                                <constraint firstItem="AoW-Av-wTo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7GV-HM-JcJ" secondAttribute="trailing" constant="8" id="zog-6P-F5S"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chooseButton" destination="AoW-Av-wTo" id="JgB-Y0-tq1"/>
+                                            <outlet property="imageUser" destination="a54-qJ-Vqd" id="iyV-O6-mZj"/>
+                                            <outlet property="nameUser" destination="7GV-HM-JcJ" id="zmN-iQ-AQX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="l2i-Ys-6zl"/>
+                        <constraints>
+                            <constraint firstItem="l2i-Ys-6zl" firstAttribute="bottom" secondItem="oBg-5X-f2V" secondAttribute="bottom" id="O9X-Iq-BqO"/>
+                            <constraint firstItem="oBg-5X-f2V" firstAttribute="top" secondItem="l2i-Ys-6zl" secondAttribute="top" id="OSX-5I-x1c"/>
+                            <constraint firstItem="l2i-Ys-6zl" firstAttribute="trailing" secondItem="oBg-5X-f2V" secondAttribute="trailing" id="mYx-aB-k1i"/>
+                            <constraint firstItem="oBg-5X-f2V" firstAttribute="leading" secondItem="l2i-Ys-6zl" secondAttribute="leading" id="zz1-kW-zyK"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="All Users" image="person.2.fill" catalog="system" id="8oF-mI-4XN"/>
+                    <connections>
+                        <outlet property="tableView" destination="oBg-5X-f2V" id="IDR-Qu-lcH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFT-39-22V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1250" y="642"/>
+            <point key="canvasLocation" x="-1251.145038167939" y="641.54929577464793"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AZi-IM-LT6">
@@ -455,6 +514,7 @@
         <image name="logoBank" width="1024" height="1024"/>
         <image name="market" width="1024" height="1024"/>
         <image name="person.2.fill" catalog="system" width="128" height="86"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="photo.circle.fill" catalog="system" width="128" height="123"/>
         <image name="square.and.arrow.down" catalog="system" width="114" height="128"/>
         <image name="visa" width="1024" height="1024"/>

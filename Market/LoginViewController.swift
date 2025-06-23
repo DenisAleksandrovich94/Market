@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LoginViewController: UIViewController {
     
@@ -21,39 +22,44 @@ class LoginViewController: UIViewController {
     @IBOutlet var testEnterButton: UIButton!
     
     
+    
+    var user = Human(){
+        didSet {
+            loginTextField.text = user.username
+            passwordTextField.text = user.password
+        }
+    }
+    
+    private var users: [Human]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         AddTargetButtons()
-        
-        NetworkMarketApi.shared.fetchCarts(products: 1) { result in
-            switch result {
-            case .success (let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
+        fetchDataRealm()
     }
+    
     
     private func AddTargetButtons() {
         enterButton.addTarget(self, action: #selector(openProfileVC), for: .touchUpInside)
-       
+        
         registrationButton.addTarget(self, action: #selector(openRegistrationVC), for: .touchUpInside)
-
+        
     }
     
     @objc private func openRegistrationVC() {
         let storybord = UIStoryboard(name: "Main", bundle: nil)
         let registrationVC = storybord.instantiateViewController(withIdentifier: "RegistrationViewController") as! RegistrationViewController
         navigationController?.pushViewController(registrationVC, animated: true)
-        //navigationItem.rightBarButtonItem.menu
     }
     
     @objc private func openProfileVC() {
         
-        if loginTextField.text == "0000", passwordTextField.text == "0000" {
+        
+        
+        if let user = checkLoginAndPassword(login: loginTextField.text!, password: passwordTextField.text!)
+        {
+            CurrentUserHolder.shared.user = user
+            
             let storybord = UIStoryboard(name: "Main", bundle: nil)
             let tabBar = storybord.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
             let profileVc = storybord.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
@@ -75,10 +81,21 @@ class LoginViewController: UIViewController {
             present(alert, animated: true)
         }
         
-       
     }
     
+    func fetchDataRealm() {
+        let realm = try! Realm()
+        
+        users = Array(realm.objects(Human.self))
+    }
     
+    private func checkLoginAndPassword(login: String, password: String) -> Human? {
+        
+        return  users.first { human in
+            human.username == loginTextField.text &&
+            human.password == passwordTextField.text
+        }
+    }
     
 }
 

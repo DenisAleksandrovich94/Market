@@ -31,7 +31,7 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
     @objc private func saveDataUser() {
         
         let realm = try! Realm()
-        var user = Human()
+        let user = Human()
         
         guard
             !nameTextField.text!.isEmpty,
@@ -43,27 +43,29 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
             present(alert, animated: true)
             return
         }
-      //  var imageString: String?
         user.name = nameTextField.text!
         user.username = userNameTextField.text!
         user.password = passwordTextField.text!
         user.cardExpire = generateCard().cardExpire
         user.cardNumber = generateCard().cardNumber
-    
+        
         if imageView.image != nil,
-           let imageString = imageView.image?.pngData()?.base64EncodedString()
+           let imageSmall = imageView.image?.jpegData(compressionQuality: 0.6)
         {
-            user.image = imageString
-        } else if let imageString = UIImage(named: "user")!.pngData()?.base64EncodedString() {
-            user.image = imageString
-        } else {
-            print("error")
+            user.image = imageSmall
         }
         
        try! realm.write {
            realm.add(user)
-           print(realm.objects(Human.self))
         }
+        
+       // CurrentUser.currentUser.user = user
+        
+        let loginController = navigationController?.viewControllers.first as! LoginViewController
+        loginController.user = user
+        loginController.fetchDataRealm()
+        
+        navigationController?.popViewController(animated: true)
     }
     
     private func generateCard() -> (cardNumber: String, cardExpire: String) {
