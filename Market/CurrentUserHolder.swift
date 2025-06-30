@@ -7,6 +7,10 @@ class CurrentUserHolder {
     
     private init () { }
     
-    var user = Human()
+    var user = Human() {
+        didSet{
+            print(user)
+        }
+    }
     
 }

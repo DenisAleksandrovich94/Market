@@ -20,7 +20,8 @@ class AllUsersViewController: UIViewController, UITableViewDelegate, UITableView
         cell.targetButton(completion: {[weak self] in
             guard let self else { return }
             let vc = tabBarController?.viewControllers?.first as! ProfileViewController
-            vc.user = users[indexPath.row]
+            CurrentUserHolder.shared.user = users[indexPath.row]
+            vc.fillOutTheUserCard()
         })
         cell.nameUser.text = users[indexPath.row].name
    

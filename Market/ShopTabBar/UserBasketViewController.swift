@@ -1,10 +1,10 @@
 import UIKit
+import RealmSwift
 
 
-class SettingsViewController: UIViewController {
+class UserBasketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-  
 }

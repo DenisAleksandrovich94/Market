@@ -26,12 +26,13 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
         installRightBarButton()
         addImageButton.addTarget(self, action: #selector(addImage), for: .touchUpInside)
         saveUserButton.addTarget(self, action: #selector(saveDataUser), for: .touchUpInside)
+        
+        
     }
     
     @objc private func saveDataUser() {
         
         let realm = try! Realm()
-        let user = Human()
         
         guard
             !nameTextField.text!.isEmpty,
@@ -43,36 +44,51 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
             present(alert, animated: true)
             return
         }
-        user.name = nameTextField.text!
-        user.username = userNameTextField.text!
-        user.password = passwordTextField.text!
-        user.cardExpire = generateCard().cardExpire
-        user.cardNumber = generateCard().cardNumber
         
-        if imageView.image != nil,
-           let imageSmall = imageView.image?.jpegData(compressionQuality: 0.6)
-        {
-            user.image = imageSmall
+        
+        let human = realm.objects(Human.self).contains(where: { human in
+            human.username == userNameTextField.text!
+        })
+        
+        if human {
+            let alert = UIAlertController(title: "Error", message: "Nickname is already taken", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            present(alert, animated: true)
+            
+        } else {
+            let user = Human()
+ 
+            user.name = nameTextField.text!
+            user.username = userNameTextField.text!
+            user.password = passwordTextField.text!
+            user.cardExpire = generateCard().cardExpire
+            user.cardNumber = generateCard().cardNumber
+            user.id = UUID()
+            
+            if imageView.image != nil,
+               let imageSmall = imageView.image?.jpegData(compressionQuality: 0.6)
+            {
+                user.image = imageSmall
+            }
+            
+            try! realm.write {
+                realm.add(user)
+            }
+            
+            let loginController = navigationController?.viewControllers.first as! LoginViewController
+            loginController.user = user
+            
+            navigationController?.popViewController(animated: true)
         }
         
-       try! realm.write {
-           realm.add(user)
-        }
         
-       // CurrentUser.currentUser.user = user
-        
-        let loginController = navigationController?.viewControllers.first as! LoginViewController
-        loginController.user = user
-        loginController.fetchDataRealm()
-        
-        navigationController?.popViewController(animated: true)
     }
     
     private func generateCard() -> (cardNumber: String, cardExpire: String) {
         
         var cardNumber = ""
         for number in 1...16 {
-         let currentNumber = Int.random(in: 0...9)
+            let currentNumber = Int.random(in: 0...9)
             cardNumber.append("\(currentNumber)")
             
             if  number % 4 == 0, number != 16 {
@@ -86,7 +102,7 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
     
     @objc private func addImage() {
         
-       let imagePickerController = UIImagePickerController()
+        let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         //imagePickerController.sourceType = .camera
         present(imagePickerController, animated: true)
