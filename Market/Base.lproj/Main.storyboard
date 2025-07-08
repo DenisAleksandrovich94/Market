@@ -663,8 +663,8 @@
                                                 <constraint firstAttribute="height" constant="140" id="deo-1Q-KoE"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="25.0000000keds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="421-h8-BaN">
-                                            <rect key="frame" x="157" y="160" width="218" height="40"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="25.00000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="421-h8-BaN">
+                                            <rect key="frame" x="220.33333333333337" y="160" width="154.66666666666663" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="ej6-sP-qIc"/>
                                             </constraints>
