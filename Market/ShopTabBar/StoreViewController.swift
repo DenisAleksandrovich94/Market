@@ -139,6 +139,7 @@ class StoreViewController: UIViewController, UITableViewDataSource {
                 print(products.count)
             case.failure(let error):
                 print(error)
+                print("1")
             }
         }
         
