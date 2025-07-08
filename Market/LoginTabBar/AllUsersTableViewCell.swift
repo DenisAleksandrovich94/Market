@@ -14,14 +14,12 @@ class AllUsersTableViewCell: UITableViewCell {
     
     
     func targetButton(completion: @escaping () -> ()) {
-       
         chooseButton.addTarget(self, action: #selector(chooseUser), for: .touchUpInside)
         self.completion = completion
         
     }
     
     @objc private func chooseUser() {
-        print("@objc")
         completion()
     }
     

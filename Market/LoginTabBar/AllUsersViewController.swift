@@ -20,7 +20,8 @@ class AllUsersViewController: UIViewController, UITableViewDelegate, UITableView
         cell.targetButton(completion: {[weak self] in
             guard let self else { return }
             let vc = tabBarController?.viewControllers?.first as! ProfileViewController
-            vc.user = users[indexPath.row]
+            CurrentUserHolder.shared.user = users[indexPath.row]
+            vc.fillOutTheUserCard()
         })
         cell.nameUser.text = users[indexPath.row].name
    
@@ -33,11 +34,6 @@ class AllUsersViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -45,7 +41,7 @@ class AllUsersViewController: UIViewController, UITableViewDelegate, UITableView
         downloadUsersFromRealm()
     }
     
-    func downloadUsersFromRealm() {
+    private func downloadUsersFromRealm() {
         let realm = try! Realm()
         users = Array(realm.objects(Human.self))
         tableView.reloadData()

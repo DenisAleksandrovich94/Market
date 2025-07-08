@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet var registrationButton: UIButton!
     
-    @IBOutlet var testEnterButton: UIButton!
+    @IBOutlet var openTheStore: UIButton!
     
     
     
@@ -35,7 +35,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AddTargetButtons()
-        fetchDataRealm()
     }
     
     
@@ -44,21 +43,30 @@ class LoginViewController: UIViewController {
         
         registrationButton.addTarget(self, action: #selector(openRegistrationVC), for: .touchUpInside)
         
+        openTheStore.addTarget(self, action: #selector(openTheShop), for: .touchUpInside)
+    }
+    
+    @objc private func openTheShop() {
+        
+        let storyBord = UIStoryboard(name: "Main", bundle: nil)
+        let tabBar = storyBord.instantiateViewController(withIdentifier: "MainTabBar1") as! UITabBarController
+        tabBar.modalPresentationStyle = .fullScreen
+        present(tabBar, animated: true)
     }
     
     @objc private func openRegistrationVC() {
         let storybord = UIStoryboard(name: "Main", bundle: nil)
         let registrationVC = storybord.instantiateViewController(withIdentifier: "RegistrationViewController") as! RegistrationViewController
         navigationController?.pushViewController(registrationVC, animated: true)
+        
     }
     
     @objc private func openProfileVC() {
-        
-        
-        
+           
         if let user = checkLoginAndPassword(login: loginTextField.text!, password: passwordTextField.text!)
         {
             CurrentUserHolder.shared.user = user
+        
             
             let storybord = UIStoryboard(name: "Main", bundle: nil)
             let tabBar = storybord.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController
@@ -83,13 +91,12 @@ class LoginViewController: UIViewController {
         
     }
     
-    func fetchDataRealm() {
-        let realm = try! Realm()
-        
-        users = Array(realm.objects(Human.self))
-    }
+  
     
     private func checkLoginAndPassword(login: String, password: String) -> Human? {
+       
+        let realm = try! Realm()
+        users = Array(realm.objects(Human.self))
         
         return  users.first { human in
             human.username == loginTextField.text &&
