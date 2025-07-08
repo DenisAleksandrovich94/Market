@@ -1,6 +1,5 @@
 import UIKit
 
-
 class CurrentUserHolder {
     
     static let shared = CurrentUserHolder()
@@ -13,7 +12,4 @@ class CurrentUserHolder {
             UserDefaults.standard.set("\(user.id)", forKey: "User")
         }
     }
-    
-   
-    
 }
