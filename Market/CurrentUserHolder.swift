@@ -10,7 +10,10 @@ class CurrentUserHolder {
     var user = Human() {
         didSet{
             print(user)
+            UserDefaults.standard.set("\(user.id)", forKey: "User")
         }
     }
+    
+   
     
 }

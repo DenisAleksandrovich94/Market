@@ -34,11 +34,6 @@ class AllUsersViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -46,7 +41,7 @@ class AllUsersViewController: UIViewController, UITableViewDelegate, UITableView
         downloadUsersFromRealm()
     }
     
-    func downloadUsersFromRealm() {
+    private func downloadUsersFromRealm() {
         let realm = try! Realm()
         users = Array(realm.objects(Human.self))
         tableView.reloadData()

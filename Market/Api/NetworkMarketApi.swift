@@ -31,14 +31,9 @@ class NetworkMarketApi {
                         allProducts.append(product)
                     }
                 }
-                
-                //var resultProducts = [MarketApi.Products]()
-                
+        
                 let prefix = Array(allProducts.prefix(count))
-                
-//                for product in 0..<count {
-//                    resultProducts.append(allProducts[product])
-//                }
+       
                 completion(.success(prefix))
                 
             } catch {

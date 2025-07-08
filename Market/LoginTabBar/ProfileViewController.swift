@@ -3,21 +3,21 @@ import RealmSwift
 
 class ProfileViewController: UIViewController, UIWebViewDelegate {
     
-    @IBOutlet var cardView: UIView!
+    @IBOutlet private var cardView: UIView!
     
-    @IBOutlet var photoUser: UIImageView!
+    @IBOutlet private var photoUser: UIImageView!
     
-    @IBOutlet var balanceLabel: UILabel!
+    @IBOutlet private var balanceLabel: UILabel!
     
-    @IBOutlet var cardNumberLabel: UILabel!
+    @IBOutlet private var cardNumberLabel: UILabel!
     
-    @IBOutlet var cardExpireLabel: UILabel!
+    @IBOutlet private var cardExpireLabel: UILabel!
     
-    @IBOutlet var userName: UILabel!
+    @IBOutlet private var userName: UILabel!
     
-    @IBOutlet var addMoneyButton: UIButton!
+    @IBOutlet private var addMoneyButton: UIButton!
     
-    @IBOutlet var getMoneyButton: UIButton!
+    @IBOutlet private var getMoneyButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -32,16 +32,14 @@ class ProfileViewController: UIViewController, UIWebViewDelegate {
     
     
     @objc func addMoney() {
-        addAlert(sign: .plus)
-       
-        
+        addAlert(sign: .plus)  
     }
     
     @objc func getMoney() {
         addAlert(sign: .minus)
     }
     
-    func addAlert(sign: Sign) {
+    private func addAlert(sign: Sign) {
         
         let alert = UIAlertController(title: "", message: "сумма", preferredStyle: .alert)
         
@@ -59,7 +57,7 @@ class ProfileViewController: UIViewController, UIWebViewDelegate {
    
     }
     
-    func fetchRealm(number: Double ,sign: Sign) {
+    private func fetchRealm(number: Double ,sign: Sign) {
         let realm = try! Realm()
         
         if let currentUser = realm.object(ofType: Human.self, forPrimaryKey: CurrentUserHolder.shared.user.id) {
@@ -82,7 +80,7 @@ class ProfileViewController: UIViewController, UIWebViewDelegate {
         case minus
     }
     
-    func fillOutTheUserCard () {
+     func fillOutTheUserCard () {
         
         balanceLabel.text =  "\(CurrentUserHolder.shared.user.money)"
         cardNumberLabel.text = CurrentUserHolder.shared.user.cardNumber

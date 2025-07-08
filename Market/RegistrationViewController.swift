@@ -75,6 +75,8 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
                 realm.add(user)
             }
             
+            
+            
             let loginController = navigationController?.viewControllers.first as! LoginViewController
             loginController.user = user
             
@@ -104,9 +106,7 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
         
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        //imagePickerController.sourceType = .camera
         present(imagePickerController, animated: true)
-        //imagePickerController
     }
     
     func imagePickerController(
@@ -127,7 +127,6 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
                 userNameTextField.text = nil
                 passwordTextField.text = nil
                 imageView.image = nil
-                print("new")
             }),
             UIAction(title: "TestUser", image: UIImage(systemName: "person.fill.questionmark.rtl"), handler: {[weak self] _ in
                 guard let self else { return }
@@ -155,7 +154,6 @@ class RegistrationViewController: UIViewController,UIImagePickerControllerDelega
                         print(error)
                     }
                 }
-                print("test")
             })
             
         ])

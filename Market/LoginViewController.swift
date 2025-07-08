@@ -66,6 +66,7 @@ class LoginViewController: UIViewController {
         if let user = checkLoginAndPassword(login: loginTextField.text!, password: passwordTextField.text!)
         {
             CurrentUserHolder.shared.user = user
+        
             
             let storybord = UIStoryboard(name: "Main", bundle: nil)
             let tabBar = storybord.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController

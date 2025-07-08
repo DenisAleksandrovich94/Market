@@ -28,6 +28,6 @@ class Human: Object {
     @Persisted var cardExpire: String
     @Persisted var cardNumber: String
     @Persisted var money: Double
-    @Persisted var cart: List<Products>
+    @Persisted var cart: List<ProductsRealm>
     
 }
