@@ -28,6 +28,7 @@ class StoreViewController: UIViewController, UITableViewDataSource {
             if let user = realm.object(ofType: Human.self, forPrimaryKey: id) {
                 
                 settingsUserImage.addTarget(self, action: #selector(changeImage), for: .touchUpInside)
+                CurrentUserHolder.shared.user = user
                 nameLabel.text = user.name
                 moneyLabel.text = "\(user.money)"
                 
